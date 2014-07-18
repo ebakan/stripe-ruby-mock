@@ -114,7 +114,11 @@ module StripeMock
           sub[:id] == subscription[:id]
         }
 
-        customer[:subscriptions][:data] << subscription
+        if params[:at_period_end] == true
+          customer[:subscriptions][:data] << subscription
+        else
+          customer[:subscriptions][:count] -= 1
+        end
         subscription
       end
 
